@@ -1,21 +1,27 @@
 <head>
-  <title>You have died</title>
+    <title>You have died</title>
 </head>
 
 <body>
-  <h1>Is your body ready?</h1>
-
-  {{> darkChecker}}
+<div class="container-fluid center">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <h1>Is your body ready?</h1>
+            <br/>
+        </div>
+    </div>
+    {{> bodyIsReadyTemplate}}
+</div>
 </body>
 
-<template name="darkChecker">
+<template name="bodyIsReadyTemplate">
     <label for="human">Are you human?</label>
-    <input id="human" type="checkbox">
+    <input id="human" class="align" type="checkbox">
     <br/>
     <br/>
     <label for="ring">Are you wearing the Name-engraved Ring?</label>
-    <input id="human" type="checkbox">
+    <input id="ring" class="align" type="checkbox">
     <br/>
     <br/>
-  <button>Praise the sun!</button>
+    <button id="bodyIsReady" disabled>Praise the sun!</button>
 </template>
