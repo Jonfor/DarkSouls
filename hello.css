@@ -7,3 +7,8 @@
 .align {
     vertical-align: top;
 }
+
+body {
+    background-image: url(nito.jpg);
+    color: white;
+}

@@ -12,14 +12,24 @@ if (Meteor.isClient) {
 
     'click #human': function (event) {
       new Audio('parry.mp3').play();
-      Session.set('isHuman', event.target.checked);
+
+      if (event.target.checked) {
+        Session.set('isHuman', true);
+      } else {
+        Session.set('isHuman', false);
+      }
 
       isBodyReady();
     },
 
     'click #ring': function (event) {
       new Audio('parry.mp3').play();
-      Session.set('isRing', event.target.checked);
+
+      if (event.target.checked) {
+        Session.set('isRing', true);
+      } else {
+        Session.set('isRing', false);
+      }
 
       isBodyReady();
     }
@@ -28,6 +38,8 @@ if (Meteor.isClient) {
   function isBodyReady() {
     if (Session.get('isHuman') && Session.get('isRing')) {
       document.getElementById('bodyIsReady').removeAttribute("disabled");
+    } else {
+      document.getElementById('bodyIsReady').setAttribute("disabled", "true");
     }
   }
 }
