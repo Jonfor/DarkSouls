@@ -1,8 +1,11 @@
 if (Meteor.isClient) {
 
+  var startSound = new Audio('/start.mp3');
+  var parrySound = new Audio('/parry.mp3');
   Template.bodyIsReadyTemplate.events({
     'click #bodyIsReady': function () {
-      new Audio('/start.mp3').play();
+      startSound.play();
+
       document.getElementById('bodyIsReady').setAttribute("disabled", "true");
       document.getElementById('human').checked = false;
       document.getElementById('ring').checked = false;
@@ -11,7 +14,7 @@ if (Meteor.isClient) {
     },
 
     'click #human': function (event) {
-      new Audio('parry.mp3').play();
+      parrySound.play();
 
       if (event.target.checked) {
         Session.set('isHuman', true);
@@ -23,7 +26,7 @@ if (Meteor.isClient) {
     },
 
     'click #ring': function (event) {
-      new Audio('parry.mp3').play();
+      parrySound.play();
 
       if (event.target.checked) {
         Session.set('isRing', true);
