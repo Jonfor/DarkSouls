@@ -1,7 +1,8 @@
 if (Meteor.isClient) {
 
   var startSound = new Audio('/start.mp3');
-  var parrySound = new Audio('/parry.mp3');
+  var parrySound1 = new Audio('/parry.mp3');
+  var parrySound2 = new Audio('/parry.mp3');
   Template.bodyIsReadyTemplate.events({
     'click #bodyIsReady': function () {
       startSound.play();
@@ -14,9 +15,8 @@ if (Meteor.isClient) {
     },
 
     'click #human': function (event) {
-      parrySound.play();
-
       if (event.target.checked) {
+        parrySound1.play();
         Session.set('isHuman', true);
       } else {
         Session.set('isHuman', false);
@@ -26,9 +26,8 @@ if (Meteor.isClient) {
     },
 
     'click #ring': function (event) {
-      parrySound.play();
-
       if (event.target.checked) {
+        parrySound2.play();
         Session.set('isRing', true);
       } else {
         Session.set('isRing', false);
