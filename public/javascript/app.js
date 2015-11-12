@@ -2,15 +2,9 @@ var startSound = new Audio('./public/assets/start.mp3');
 var parrySound1 = new Audio('./public/assets/parry.mp3');
 var parrySound2 = new Audio('./public/assets/parry.mp3');
 
-function playBodyIsReady() {
-    startSound.play();
-
-    document.getElementById('bodyIsReady').setAttribute("disabled", "true");
-    document.getElementById('human').checked = false;
-    document.getElementById('ring').checked = false;
-    sessionStorage.setItem('isHuman', false);
-    sessionStorage.setItem('isRing', false);
-}
+// Clear out the session items.
+sessionStorage.setItem('isHuman', false);
+sessionStorage.setItem('isRing', false);
 
 function playHuman() {
     if (event.target.checked) {
@@ -34,8 +28,25 @@ function playRing() {
     isBodyReady();
 }
 
+function playBodyIsReady() {
+    startSound.play();
+
+    document.getElementById('bodyIsReady').setAttribute("disabled", "true");
+    document.getElementById('human').checked = false;
+    document.getElementById('ring').checked = false;
+    sessionStorage.setItem('isHuman', false);
+    sessionStorage.setItem('isRing', false);
+}
+
 function isBodyReady() {
-    if (sessionStorage.getItem('isHuman') && sessionStorage.getItem('isRing')) {
+    // We have to use JSON.parse because session/local storage converts everything to a string.
+    // See https://stackoverflow.com/questions/3263161/cannot-set-boolean-values-in-localstorage
+    var isHuman = JSON.parse(sessionStorage.getItem('isHuman')),
+        isRing = JSON.parse(sessionStorage.getItem('isRing'));
+
+    console.log(isHuman);
+    console.log(isRing);
+    if (isHuman && isRing) {
         document.getElementById('bodyIsReady').removeAttribute("disabled");
     } else {
         document.getElementById('bodyIsReady').setAttribute("disabled", "true");
