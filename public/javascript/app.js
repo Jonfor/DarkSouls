@@ -6,7 +6,7 @@ var parrySound2 = new Audio('./public/assets/parry.mp3');
 sessionStorage.setItem('isHuman', false);
 sessionStorage.setItem('isRing', false);
 
-function playHuman() {
+function playHuman(event) {
     if (event.target.checked) {
         parrySound1.play();
         sessionStorage.setItem('isHuman', true);
@@ -17,7 +17,7 @@ function playHuman() {
     isBodyReady();
 }
 
-function playRing() {
+function playRing(event) {
     if (event.target.checked) {
         parrySound2.play();
         sessionStorage.setItem('isRing', true);
@@ -44,8 +44,6 @@ function isBodyReady() {
     var isHuman = JSON.parse(sessionStorage.getItem('isHuman')),
         isRing = JSON.parse(sessionStorage.getItem('isRing'));
 
-    console.log(isHuman);
-    console.log(isRing);
     if (isHuman && isRing) {
         document.getElementById('bodyIsReady').removeAttribute("disabled");
     } else {
