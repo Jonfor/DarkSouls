@@ -21,13 +21,16 @@
         <div class="col-xs-3 col-xs-offset-3 center">
             <h1>Is your body ready?</h1>
             <br/>
-            <label class="labels" for="human" onclick="playHuman(event)">Are you human?</label>
-            <input id="human" class="align" type="checkbox" onclick="playHuman(event)">
-            <br/>
-            <br/>
-            <label class="labels" for="ring" onclick="playRing(event)">Are you wearing the Name-engraved Ring?
-                (Disease)</label>
-            <input id="ring" class="align" type="checkbox" onclick="playRing(event)">
+
+            <div class="checkbox-container">
+                <label class="labels" for="human" onclick="playHuman(event)">Are you human?</label>
+                <input id="human" class="align" type="checkbox" onclick="playHuman(event)">
+                <br/>
+                <br/>
+                <label class="labels" for="ring" onclick="playRing(event)">Are you wearing the Name-engraved Ring?
+                    (Disease)</label>
+                <input id="ring" class="align" type="checkbox" onclick="playRing(event)">
+            </div>
             <br/>
             <br/>
             <button type="button" class="btn btn-lg btn-danger" id="bodyIsReady" disabled onclick="playBodyIsReady()">

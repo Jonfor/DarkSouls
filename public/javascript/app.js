@@ -56,12 +56,18 @@ function isBodyReady() {
 var socket = io();
 
 socket.on('body ready', function (data) {
-    console.log(data);
     buildList(data.userList);
+
+    // Remove readiness after 30 seconds.
+    window.setTimeout(function () {
+        var usernameNoSpace = data.username.replace(/\s+/g, '');
+        var ele = $('#' + usernameNoSpace);
+        ele.removeClass('ready');
+        ele.text(data.username + '...is not ready!');
+    }, 30000)
 });
 
 socket.on('body lives', function (userList) {
-    console.log(userList);
     buildList(userList);
 });
 
@@ -69,13 +75,20 @@ socket.on('body dies', function (name) {
     $('#' + name).remove();
 });
 
+/**
+ * Helper function that builds the DOM elements of the list.
+ * Clear the current list and rebuild the whole thing. This is to have a consistent list for all users.
+ * @param userList
+ */
 function buildList(userList) {
     var element = $('#messages');
     element.empty();
     for (var i = 0; i < userList.length; i++) {
         if (userList[i].isBodyReady) {
+            // Add the 'ready' text, the username (without spaces) as id, and the 'ready' class.
             element.append($('<li>').text(userList[i].name + '...is ready!').attr('id', userList[i].name.replace(/\s+/g, '')).addClass('ready'));
         } else {
+            // Add the 'not ready' text and the username (without spaces) as id.
             element.append($('<li>').text(userList[i].name + '...is not ready!').attr('id', userList[i].name.replace(/\s+/g, '')));
         }
 

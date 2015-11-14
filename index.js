@@ -8,7 +8,7 @@ var io = require('socket.io')(http);
 
 var names = ['Kaka Karrotcake', 'Vergina', 'xXSupersandlegend69', 'Dani California', '420nosc0pe', 'Gilgamesh',
         'King David', 'Slim Shady', 'Jonfurry', 'Kristian Stewart', 'Googo', 'Freezy Pop', 'Lvl 70 ret pally lfg VC',
-        'Danku Soulu', 'Soju is Vodka downed water', 'Bob Rober', 'Bob Ross', 'Master Cheef', 'Final Fantasy Money',
+        'Danku Soulu', 'Soju is watered down Vodka', 'Bob Rober', 'Bob Ross', 'Master Cheef', 'Final Fantasy Money',
         'Michelle Cumella Obama', 'Lightning', 'Stan, your biggest fan', 'Edward Snowden is a hero',
         'Edward Snowden is a zero', 'Tay Zonday\'s Chocolate Rain', 'EXODIAAAAAAAAAAAA', 'Nico, your cousin', 'Dan Coach',
         'Dan Cooch', 'Dan Crotch', 'Crotchy', 'Koch Koch', 'Gilagan', 'MR. HAAAAAAAAAAAAAN', 'Android 69', 'Kappa Kappa Kappa'],
@@ -28,7 +28,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function () {
-        console.log("ded");
         console.log(socket.username);
         deleteUser(socket.username);
         io.emit('body dies', socket.username.replace(/\s+/g, ''));

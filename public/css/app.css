@@ -47,6 +47,10 @@ body {
     color: green;
 }
 
+.name-text {
+
+}
+
 #messages li {
     padding: 5px 10px;
     background: lightgray;
@@ -54,4 +58,8 @@ body {
 
 #messages li {
     border-bottom: solid 1px black;
+}
+
+.checkbox-container {
+    font-size: 17px;
 }
