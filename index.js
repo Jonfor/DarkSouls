@@ -28,7 +28,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function () {
-        console.log(socket.username);
         deleteUser(socket.username);
         io.emit('body dies', socket.username.replace(/\s+/g, ''));
 
