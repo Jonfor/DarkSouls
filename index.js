@@ -73,7 +73,6 @@ function bodyIsReady(username) {
 function deleteUser(username) {
     for (var i = 0; i < userList.length; i++) {
         if (userList[i].name === username) {
-            console.log("FOUDN UASR");
             userList.splice(i, 1);
             break;
         }
