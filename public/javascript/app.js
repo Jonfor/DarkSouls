@@ -31,11 +31,13 @@ function playRing(event) {
 function playBodyIsReady() {
     startSound.play();
 
-    document.getElementById('bodyIsReady').setAttribute("disabled", "true");
-    document.getElementById('human').checked = false;
-    document.getElementById('ring').checked = false;
+    $('#bodyIsReady').prop('disabled', true);
+    $('#human').prop('checked', false);
+    $('#ring').prop('checked', false);
     sessionStorage.setItem('isHuman', false);
     sessionStorage.setItem('isRing', false);
+
+    socket.emit('body ready');
 }
 
 function isBodyReady() {
@@ -45,10 +47,37 @@ function isBodyReady() {
         isRing = JSON.parse(sessionStorage.getItem('isRing'));
 
     if (isHuman && isRing) {
-        document.getElementById('bodyIsReady').removeAttribute("disabled");
+        $('#bodyIsReady').removeAttr('disabled');
     } else {
-        document.getElementById('bodyIsReady').setAttribute("disabled", "true");
+        $('#bodyIsReady').prop('disabled', true);
     }
 }
 
+var socket = io();
 
+socket.on('body ready', function (data) {
+    console.log(data);
+    buildList(data.userList);
+});
+
+socket.on('body lives', function (userList) {
+    console.log(userList);
+    buildList(userList);
+});
+
+socket.on('body dies', function (name) {
+    $('#' + name).remove();
+});
+
+function buildList(userList) {
+    var element = $('#messages');
+    element.empty();
+    for (var i = 0; i < userList.length; i++) {
+        if (userList[i].isBodyReady) {
+            element.append($('<li>').text(userList[i].name + '...is ready!').attr('id', userList[i].name.replace(/\s+/g, '')).addClass('ready'));
+        } else {
+            element.append($('<li>').text(userList[i].name + '...is not ready!').attr('id', userList[i].name.replace(/\s+/g, '')));
+        }
+
+    }
+}
